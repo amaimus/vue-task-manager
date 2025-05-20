@@ -7,7 +7,7 @@ import TaskDetailView from '@/views/TaskDetailView.vue'
 const routes: Array<RouteRecordRaw> = [
   { path: '/', name: 'Login', component: LoginView },
   { 
-    path: '/',
+    path: '/dashboard',
     name: 'Dashboard',
     component: DashboardView,
     children: [
