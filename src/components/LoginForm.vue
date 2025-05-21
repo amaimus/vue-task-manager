@@ -14,7 +14,14 @@
 </template>
 
 <script setup lang="ts">
+import { useLoginForm } from '@/composables/useLoginForm';
 import { useLogin } from '@/composables/useLogin';
 
-const { username, btnDisabled, handleLogin } = useLogin();
+const { username, btnDisabled } = useLoginForm();
+const { login } = useLogin();
+
+const handleLogin = () => {
+  if (username.value.trim() === '') return;
+  login(username.value);
+};
 </script>
