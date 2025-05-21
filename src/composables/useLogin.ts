@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
-import { loginUser } from '@/services/authService';
+import { loginUser, logoutUser } from '@/services/authService';
 
 export function useLogin() {
   const router = useRouter();
@@ -19,8 +19,20 @@ export function useLogin() {
     }
   };
 
+  const logout = async () => {
+    loading.value = true
+    const success = await logoutUser();
+    loading.value = false
+
+    if (success) {
+      userStore.logout();
+      router.push('/');
+    }
+  };
+
   return {
     login,
+    logout,
     loading,
   };
 }
