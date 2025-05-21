@@ -15,7 +15,7 @@
         color="white"
         class="mr-2"
       />
-      {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
+      {{ loading ? '' : 'Iniciar sesión' }}
     </v-btn>
   </v-form>
 </template>

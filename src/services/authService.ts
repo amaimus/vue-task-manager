@@ -3,13 +3,13 @@ export async function loginUser(username: string): Promise<boolean> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(username.trim() !== '');
-    }, 3000);
+    }, 1000);
   });
 }
 
 export async function logoutUser(): Promise<boolean> {
   // Simulación de logout
   return new Promise((resolve) => {
-    setTimeout(() => resolve(true), 3000);
+    setTimeout(() => resolve(true), 1000);
   });
 }
