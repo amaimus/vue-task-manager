@@ -7,8 +7,15 @@
       outlined
       dense
     />
-    <v-btn type="submit" color="primary" block :disabled="btnDisabled">
-      Iniciar sesión
+    <v-btn type="submit" color="primary" block :disabled="btnDisabled || loading">
+      <v-progress-circular
+        v-if="loading"
+        indeterminate
+        size="20"
+        color="white"
+        class="mr-2"
+      />
+      {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
     </v-btn>
   </v-form>
 </template>
@@ -18,7 +25,7 @@ import { useLoginForm } from '@/composables/useLoginForm';
 import { useLogin } from '@/composables/useLogin';
 
 const { username, btnDisabled } = useLoginForm();
-const { login } = useLogin();
+const { login, loading } = useLogin();
 
 const handleLogin = () => {
   if (username.value.trim() === '') return;
