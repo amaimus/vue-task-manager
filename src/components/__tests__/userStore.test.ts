@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
-import { useUserStore } from '../../stores/user';
+import { useAuthStore } from '../../stores/auth';
 
 describe('User Store', () => {
   beforeEach(() => {
@@ -8,14 +8,14 @@ describe('User Store', () => {
   });
 
   it('Login correctly as user', () => {
-    const store = useUserStore();
+    const store = useAuthStore();
     store.login('alejandro');
     expect(store.username).toBe('alejandro');
     expect(store.isAuthenticated).toBe(true);
   });
 
   it('Logout correctly', () => {
-    const store = useUserStore();
+    const store = useAuthStore();
     store.login('alejandro');
     store.logout();
     expect(store.username).toBe('');

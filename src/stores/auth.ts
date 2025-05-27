@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('user', {
+export const useAuthStore = defineStore('auth', {
   state: () => ({
     username: '',
     isAuthenticated: false
@@ -17,16 +17,16 @@ export const useUserStore = defineStore('user', {
       this.removeFromLocalStorage()
     },
     saveToLocalStorage() {
-      localStorage.setItem('user', JSON.stringify({
+      localStorage.setItem('auth', JSON.stringify({
         username: this.username,
         isAuthenticated: this.isAuthenticated
       }))
     },
     removeFromLocalStorage() {
-      localStorage.removeItem('user');
+      localStorage.removeItem('auth');
     },
     restoreFromLocalStorage() {
-      const raw = localStorage.getItem('user');
+      const raw = localStorage.getItem('auth');
       if (!raw) return;
 
       try {

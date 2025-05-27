@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '@/stores/user';
+import { useAuthStore } from '@/stores/auth';
 import { loginUser, logoutUser } from '@/services/authService';
 
 export function useLogin() {
   const router = useRouter();
-  const userStore = useUserStore();
+  const authStore = useAuthStore();
   const loading = ref(false);
 
   const login = async (username: string) => {
@@ -14,7 +14,7 @@ export function useLogin() {
     loading.value = false
     
     if (success) {
-      userStore.login(username);
+      authStore.login(username);
       router.push('/dashboard');
     }
   };
@@ -25,7 +25,7 @@ export function useLogin() {
     loading.value = false
 
     if (success) {
-      userStore.logout();
+      authStore.logout();
       router.push('/');
     }
   };
