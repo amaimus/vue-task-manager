@@ -2,6 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { useUserStore } from './stores/user'
 
 import App from './App.vue'
 import router from './router'
@@ -20,6 +21,9 @@ const vuetify = createVuetify({
 })
 
 app.use(createPinia())
+const userStore = useUserStore()
+userStore.restoreFromLocalStorage()
+
 app.use(router)
 app.use(vuetify)
 
