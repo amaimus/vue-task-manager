@@ -1,18 +1,44 @@
 <template>
-  <v-list-item>
+  <v-card :color="cardBackgroundColor" variant="elevated" class="mx-auto">
     <div class="task-hover pa-2 rounded ">
-      <v-list-item-content>
-        <v-list-item-title>{{ taskSummary }}</v-list-item-title>
-        <v-list-item-subtitle>{{ task.description }}</v-list-item-subtitle>
-        <v-list-item-subtitle>{{ task.status }}</v-list-item-subtitle>
-      </v-list-item-content>
+      <v-card-item>
+        <div class="text-overline mb-1 text-h4"> {{ task.status }} </div>
+        <div class="text-h6 mb-1"> {{ taskSummary}} </div>
+        <div class="text-caption"> {{ task.description }}</div>
+      </v-card-item>
+      <v-card-actions>
+        <v-btn @click="$emit('changeStatus', task)"class="ma-2">
+          {{ cardButtonText }}
+        </v-btn>
+      </v-card-actions>
     </div>
-  </v-list-item>
+  </v-card>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { Task } from '@/types/task';
+
+const statusBackgroundColors = {
+  'todo': 'primary',
+  'in-progress': 'secondary',
+  'done': 'success',
+}
+
+const actionButtonText = {
+  'todo': 'Start Task',
+  'in-progress': 'Complete Task',
+  'done': 'Reopen Task',
+}
+
+const cardBackgroundColor = computed(() => {
+  return statusBackgroundColors[props.task.status] || 'grey';
+}); 
+
+const cardButtonText = computed(() => {
+  return actionButtonText[props.task.status] || 'Action';
+});
+
 
 const props = defineProps<{
   listNumber: number;
@@ -25,14 +51,3 @@ const taskSummary: ComputedRef<string> = computed(() => {
   return `#${props.listNumber} - ${props.task.title}`;
 });
 </script>
-
-<style scoped>
-.task-hover{
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.task-hover:hover {
-  background-color: #c4c4c4;
-}
-</style>
