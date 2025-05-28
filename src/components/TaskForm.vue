@@ -40,13 +40,17 @@
 import { useTasks } from '@/composables/useTasks';
 import { useTaskForm } from '@/composables/useTaskForm';
 
-const { form, isFormValid } = useTaskForm();
+const { form, isFormValid, resetForm } = useTaskForm();
 const { createTask, loading } = useTasks();
 
-const handleCreateTask = () => {
+const handleCreateTask = async () => {
   if (!isFormValid.value) return;
 
-  createTask(form.value);
+  createTask(form.value)
+    .then(() => resetForm() )
+    .catch((error) => {
+      console.error('Error creating task:', error);
+    });
 };
 
 </script>
