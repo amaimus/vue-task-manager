@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CurrentUserPanel from '@/components/CurrentUserPanel.vue';
 import TaskForm from '@/components/TaskForm.vue';
-
+import TasksDashboard from '@/components/TasksDashboard.vue';
 </script>
 
 <template>
@@ -18,7 +18,7 @@ import TaskForm from '@/components/TaskForm.vue';
     </v-row>
     <v-row>
       <v-col cols="12">
-        <!-- <TasksDashboard /> -->
+        <TasksDashboard />
       </v-col>
     </v-row>
   </v-container>
