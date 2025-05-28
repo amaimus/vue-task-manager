@@ -33,7 +33,7 @@ export function useTasks() {
         ...task,
         status: newStatus
       })
-      // tasksStore.updateTask(task.id, updatedTask);
+      tasksStore.updateTask(updatedTask);
       console.log('Task updated successfully:', updatedTask);
       return updatedTask;
     } catch (error) {
